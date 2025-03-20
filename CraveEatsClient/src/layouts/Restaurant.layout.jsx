@@ -16,6 +16,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getSpecificRestaurant } from "../redux/reducers/restaurant/restaurant.actions";
 import { getImage } from "../redux/reducers/Image/image.action";
+import { getCart } from "../redux/reducers/Cart/cart.action";
 
 function RestaurantLayout({ children }) {
     const [restaurant, setRestaurant] = useState({
@@ -56,6 +57,7 @@ function RestaurantLayout({ children }) {
             }
 
         });
+        dispatch(getCart());
     }, [id, dispatch]);
 
     return (
