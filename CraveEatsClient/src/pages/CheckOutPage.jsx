@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { BsShieldLockFill } from "react-icons/bs";
 
 // components
@@ -13,20 +13,12 @@ import { useSelector } from "react-redux";
 // import Razorpay from "razorpay";
 
 
-// Redux
-import { useDispatch } from "react-redux";
-import { getSpecificRestaurant } from "../redux/reducers/restaurant/restaurant.actions";
-
 // stripes
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from "@stripe/react-stripe-js";
 
 
 
-
-// stripes
-import { loadStripe } from '@stripe/stripe-js';
-const stripe = await loadStripe(process.env.STRIPE_PUBLIC_KEY);
 function CheckoutPage() {
     const address = [
         {
@@ -50,7 +42,7 @@ function CheckoutPage() {
     console.log(reduxStateCart);
     const totalAmount = reduxStateCart.reduce((total, current) => total + current.totalPrice, 0);
 
-    const apiURL = import.meta.env.VITE_API_URL || "https://craveeats-server-a514484aed4c.herokuapp.com/payment";
+    const apiURL = import.meta.env.VITE_API_URL || "http://localhost:3000/payment";
     const makePayment = async () => {
         // Load Stripe with public key
         const stripe = await loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
@@ -76,27 +68,56 @@ function CheckoutPage() {
         })
     }
 
+    // const stripe = useStripe();
+    // const elements = useElements();
 
-    const [restaurant, setRestaurant] = useState([]);
+    // const handlePayment = async (event) => {
+    //     event.preventDefault();
 
-    const dispatch = useDispatch();
-    console.log("cart", reduxStateCart);
+    //     if (!stripe || !elements) return;
 
-    // useEffect(() => {
-    //     reduxStateCart.map((food) => (
-    //         console.log(food.restaurant);
-    //     ));
-    // });
+    //     const { error, paymentMethod } = await stripe.createPaymentMethod({
+    //         type: "card",
+    //         card: elements.getElement(CardElement),
+    //     });
 
+    //     if (error) {
+    //         console.error(error);
+    //         alert(error.message);
+    //     } else {
+    //         alert("Payment Successful!");
+    //         console.log("Payment Method:", paymentMethod);
+    //     }
+    // };
+    // const payNow = () => {
+    //     let options = {
+    //         key: "rzp_test_q1aD8S4CGOEb75",
+    //         amount:
+    //             reduxStateCart.reduce(
+    //                 (total, current) => total + current.totalPrice,
+    //                 0
+    //             ) * 100,
+    //         currency: "Dollars",
+    //         name: "CraveEats",
+    //         description: "Fast Delivery Service",
+    //         image:
+    //             "https://b.zmtcdn.com/web_assets/b40b97e677bc7b2ca77c58c61db266fe1603954218.png",
+    //         handler: (data) => {
+    //             alert("Payment Successful");
+    //             console.log(data);
+    //         },
+    //         prefill: {
+    //             name: reduxStateUser.fullName,
+    //             email: reduxStateUser.email,
+    //         },
+    //         theme: {
+    //             color: "#e23744",
+    //         },
+    //     };
 
-    // dispatch(getSpecificRestaurant(reduxStateCart.food.restaurant)).then(() => {
-
-
-    //     console.log("formated", data.payload);
-    //     setRestaurant(data.payload);
-
-    //     // });
-    // }, []);
+    //     let razorPay = new window.Razorpay(options);
+    //     razorPay.open();
+    // };
 
     return (
 
@@ -107,23 +128,15 @@ function CheckoutPage() {
                 <h3 className="text-lg font-semibold">Summary</h3>
                 <div className="flex w-full flex-col gap-2 items-center">
                     <h5 className="text-base tracking-wider">ORDER FROM</h5>
-                    {/* {reduxStateCart?.map((food) => ( */}
-
-
                     <div className="flex w-full flex-col items-center text-gray-400">
                         <h4>Domino's Pizza</h4>
                         <small>GT Woorld Mall, Magadi Road, NCR Noida</small>
                     </div>
-
                     <div className="my-4 h-32 overflow-y-scroll px-4 flex flex-col gap-2 w-full md:w-3/5">
                         {reduxStateCart?.map((food) => (
                             <FoodItem key={food._id} {...food} />
                         ))}
-                        {/* <FoodItem {...food} />
-                            </div> */}
                     </div>
-                    {/* ))} */}
-
                     <div className="flex flex-col gap-3 w-full md:w-3/5 items-center">
                         <h4 className="text-xl font-semibold">Choose Address</h4>
                         <AddressList address={address} />
