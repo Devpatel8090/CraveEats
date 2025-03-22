@@ -67,7 +67,9 @@ function FoodItem(props) {
                         <div className="w-3/4 md:w-7/12 flex flex-col gap-1">
                             <div className="flex items-center justify-between">
                                 <h3 className="text-xl font-semibold">{food?.name}</h3>
-                                <button className="md:hidden flex items-center gap-2 text-CraveEats-400 bg-CraveEats-50 border border-CraveEats-400 px-2 py-1 rounded-lg">
+                                <button className="md:hidden flex items-center gap-2 text-CraveEats-400 bg-CraveEats-50 border border-CraveEats-400 px-2 py-1 rounded-lg"
+                                    onClick={addFoodToCart}
+                                    disabled={food?.isAddedToCart}>
                                     {food.isAddedToCart ? (
                                         "Added"
                                     ) : (

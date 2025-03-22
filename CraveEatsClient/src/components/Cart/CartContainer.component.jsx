@@ -5,7 +5,7 @@ import {
     IoMdArrowDropup,
 } from "react-icons/io";
 import { IoCloseSharp } from "react-icons/io5";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 // component
 import FoodItem from "./FoodItem.component";
@@ -16,22 +16,23 @@ import { useSelector, useDispatch } from "react-redux";
 
 function CartSM({ toggle }) {
     const reduxState = useSelector((globalState) => globalState.cart.cart);
-    const history = useHistory();
-    const continueToCheckout = () => history.push("/checkout/orders");
+    const navigate = useNavigate();
+    console.log(navigate);
+    const continueToCheckout = () => navigate("/checkout/orders");
     return (
         <>
             <div className="md:hidden flex items-center justify-between">
                 <div className="flex flex-col items-start">
-                    <small className="flex items-cetner gap-1" onClick={toggle}>
+                    <small className="flex items-cetner gap-1 text-CraveEats-500" onClick={toggle}>
                         {reduxState.length} Item <IoMdArrowDropup />
                     </small>
-                    <h4>
+                    <h4 className="text-CraveEats-500">
                         ${reduxState.reduce((acc, curVal) => acc + curVal.totalPrice, 0)} <sub>(plus tax)</sub>
                     </h4>
                 </div>
                 <button
                     onClick={continueToCheckout}
-                    className="flex items-center gap-1 bg-zomato-400 px-3 py-1 text-white rounded-lg">
+                    className="flex items-center gap-1 bg-CraveEats-400 px-3 py-1 text-white rounded-lg">
                     Continue <IoMdArrowDropright />
                 </button>
             </div>
@@ -41,23 +42,24 @@ function CartSM({ toggle }) {
 
 function CartLG({ toggle }) {
     const reduxState = useSelector((globalState) => globalState.cart.cart);
-    const history = useHistory();
-    const continueToCheckout = () => history.push("/checkout/orders");
+    const navigate = useNavigate();
+    console.log(navigate);
+    const continueToCheckout = () => navigate("/checkout/orders");
 
     return (
         <>
             <div className="hidden md:flex items-center justify-between">
                 <div className="flex flex-col items-start">
-                    <small className="flex items-center gap-1" onClick={toggle}>
+                    <small className="flex items-center gap-1 text-CraveEats-500" onClick={toggle}>
                         {reduxState.length} Item <IoMdArrowDropup />
                     </small>
-                    <h4>
+                    <h4 className="text-CraveEats-500">
                         ${reduxState.reduce((acc, curVal) => acc + curVal.totalPrice, 0)}{" "} <sub>(plus tax)</sub>
                     </h4>
                 </div>
                 <button
                     onClick={continueToCheckout}
-                    className="flex items-center gap-1 bg-zomato-400 px-3 py-1 text-white rounded-lg">
+                    className="flex items-center gap-1 bg-CraveEats-400 px-3 py-1 text-white rounded-lg">
                     Continue <IoMdArrowDropright />
                 </button>
             </div>
@@ -102,8 +104,8 @@ function CartContainer() {
                     {isOpen && (
                         <div className="fixed w-full overflow-y-scroll h-48 bg-white z-10 p-2 bottom-14 px-3">
                             <div className="flex items-center justify-between md:px-20">
-                                <h3 className="text-xl font-semibold">Your Orders</h3>
-                                <IoCloseSharp onClick={closeCart} />
+                                <h3 className="text-xl font-semibold text-CraveEats-500">Your Orders</h3>
+                                <IoCloseSharp className="text-CraveEats-500" onClick={closeCart} />
                             </div>
 
                             <hr className="my-2" />

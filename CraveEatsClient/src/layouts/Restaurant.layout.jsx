@@ -9,8 +9,9 @@ import ImageGrid from "../components/Restaurant/ImageGrid.component";
 import RestaurantInfo from "../components/Restaurant/RestaurantInfo.component";
 import Tabs from "../components/Restaurant/Tabs.component";
 import InfoButtonsTabs from "../components/Restaurant/InfoButtonsTabs.component";
+import CartContainer from "../components/Cart/CartContainer.component";
 
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 
 // Redux
 import { useDispatch } from "react-redux";
@@ -27,16 +28,15 @@ function RestaurantLayout({ children }) {
         restaurantRating: 4.1,
         deliveryRating: 3.2,
     });
-
     const { id } = useParams();
     const dispatch = useDispatch();
-
-    console.log(id);
+    const navigate = useNavigate();
+    const continueToReview = () => {
+        navigate(`/restaurant/${id}/reviews`);
+    }
 
     useEffect(() => {
         dispatch(getSpecificRestaurant(id)).then((data) => {
-            console.log("API Response:", data); // Debugging line
-
             if (!data.payload || !data.payload.restaurant) {
                 console.error("Restaurant data is undefined!");
                 return;
@@ -45,7 +45,6 @@ function RestaurantLayout({ children }) {
                 ...prev,
                 ...data.payload.restaurant,
             }));
-            console.log(data.payload);
             if (data.payload.restaurant.photos) {
                 dispatch(getImage(data.payload.restaurant.photos)).then((imageData) => {
                     console.log("Image API Response:", imageData);
@@ -55,7 +54,6 @@ function RestaurantLayout({ children }) {
                     }));
                 });
             }
-
         });
         dispatch(getCart());
     }, [id, dispatch]);
@@ -74,7 +72,7 @@ function RestaurantLayout({ children }) {
                     restaurantTimings={restaurant?.restaurantTimings}
                 />
                 <div className="my-4 flex flex-wrap gap-3 mx-auto">
-                    <InfoButtonsTabs isActive={true}>
+                    <InfoButtonsTabs isActive={true} onClick={continueToReview}>
                         <TiStarOutline /> Add Review
                     </InfoButtonsTabs>
                     <InfoButtonsTabs>
@@ -92,6 +90,7 @@ function RestaurantLayout({ children }) {
                 </div>
                 {children}
             </div>
+            <CartContainer />
         </>
     );
 }
