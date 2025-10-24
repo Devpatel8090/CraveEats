@@ -76,7 +76,7 @@ function LargeNav({ openSignIn, openSignUp }) {
                         <span className="text-CraveEats-400">
                             <HiLocationMarker />
                         </span>
-                        <input type="text" placeholder="Delhi NCR" className="focus:outline-none" />
+                        <input type="text" placeholder="Los Angeles" className="focus:outline-none" />
                         <IoMdArrowDropdown />
 
                     </div>

@@ -19,7 +19,11 @@ export const getFoodCategories = () => async (dispatch) => {
     try {
         const categories = await axios({
             method: "GET",
-            url: `https://craveeats-server-a514484aed4c.herokuapp.com/food/categories`,
+            // <<<<<<< HEAD
+            //             url: `https://craveeats-server-a514484aed4c.herokuapp.com/food/categories`,
+            // =======
+            url: `http://localhost:3000/food/categories`,
+
         });
         return dispatch({ type: GET_FOOD_CATEGORY_LIST, payload: categories.data });
     } catch (error) {

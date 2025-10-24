@@ -47,37 +47,37 @@ const NightLifeCarousel = () => {
         {
             image:
                 "https://b.zmtcdn.com/data/collections/c392056cfd7c02befe8d53f94ad2a908_1581933619.jpg?output-format=webp",
-            title: "Best of Delhi NCR",
+            title: "Best of Los Angeles",
             places: "150 Places",
         },
         {
             image:
                 "https://b.zmtcdn.com/data/collections/c392056cfd7c02befe8d53f94ad2a908_1581933619.jpg?output-format=webp",
-            title: "Best of Delhi NCR",
+            title: "Best of Los Angeles",
             places: "150 Places",
         },
         {
             image:
                 "https://b.zmtcdn.com/data/collections/c392056cfd7c02befe8d53f94ad2a908_1581933619.jpg?output-format=webp",
-            title: "Best of Delhi NCR",
+            title: "Best of Los Angeles",
             places: "150 Places",
         },
         {
             image:
                 "https://b.zmtcdn.com/data/collections/c392056cfd7c02befe8d53f94ad2a908_1581933619.jpg?output-format=webp",
-            title: "Best of Delhi NCR",
+            title: "Best of Los Angeles",
             places: "150 Places",
         },
         {
             image:
                 "https://b.zmtcdn.com/data/collections/c392056cfd7c02befe8d53f94ad2a908_1581933619.jpg?output-format=webp",
-            title: "Best of Delhi NCR",
+            title: "Best of Los Angeles",
             places: "150 Places",
         },
         {
             image:
                 "https://b.zmtcdn.com/data/collections/c392056cfd7c02befe8d53f94ad2a908_1581933619.jpg?output-format=webp",
-            title: "Best of Delhi NCR",
+            title: "Best of Los Angeles",
             places: "150 Places",
         },
     ]);

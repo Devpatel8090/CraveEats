@@ -21,7 +21,9 @@ Router.post("/checkout", async (req, res) => {
                     name: product.name,
 
                 },
-                unit_amount: Math.round(product.price) * 100,
+
+                unit_amount: product.price * 100,
+
             },
             quantity: product.quantity
         }));
